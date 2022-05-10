@@ -7,11 +7,11 @@ Although we endeavour to ensure that all the codes and results delivered are cor
 
 These codes are distributed as is for non-commercial peaceful purposes only, such as research and education. It is explicitly prohibited to use the codes, their parts, their results or any related material for military-related and other than peaceful purposes. By using these codes or their materials, you agree with these terms and conditions.
 
-#Universal_constants.f90#
+#Universal_constants.f90
 Contains universal constants that can be used in a code as global variables
 
 
-#Convolution_of_2_files.f90#
+#Convolution_of_2_files.f90
 The code convolves two arbitrary data arrays read from user-defined files. To execute, call the compiled file (e.g. Convolve.exe) in the following format: 
 * Convolve.exe  /File_#1 col_1 col_2  /File_#2 col_1 col_2
 with the following key-words:
@@ -22,7 +22,7 @@ with the following key-words:
 Note that Entry separator " / " must be used before each file name
 
 
-#FFT.f90#
+#FFT.f90
 The code performes a Fourier (or inverse Fourier) transform on the data from a user-specified file. To execute, call the compiled code (e.g. FFT.exe) with the following key-words:
 * FILE -- to specify the filename with the data
 * COL -- to specify the column in the file to be used for Fourier transform
