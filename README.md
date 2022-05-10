@@ -28,4 +28,4 @@ The code performes a Fourier (or inverse Fourier) transform on the data from a u
 * COL -- to specify the column in the file to be used for Fourier transform
 * DIRECT -- to specify that it should be Fourier (not inverse Fourier) transform
 * INVERSE  -- to specify that it should be inverse Fourier transform
-* DECONVOLVE -- to specify if deconvolution of the data with a Gaussian function should be performed (ocationally useful feature)
+* DECONVOLVE -- to specify if deconvolution of the data with a Gaussian function should be performed (occasionally useful feature)
