@@ -1,37 +1,49 @@
-! 1111111111111111111111111111111111111111111111111111111111111
 ! This module contains universal constants
 
 MODULE Universal_constants
  implicit none
 
-real(8) :: g_Pi, g_exp, g_e, g_me, g_cvel, g_Mp, g_h, g_kb, g_kb_EV, g_e0, g_mu0, g_Ry, g_a0, g_v0, g_alpha, g_P_atm, g_e_m, g_h_MeVs, g_e_ESU, g_me_MeV, g_u_MeV, g_re, g_lambda_e, g_SIGMA_0, g_MU_B_MeV_T, g_E_M_e, g_E_M_P, g_G, g_g_Earth, g_N_A, g_V_MOLAR, g_LAMBDAT, g_SIGMA_SB, g_G_F, g_M_W, g_M_Z0, g_G_S, g_AUENERGY, g_AUACTION, g_AUTIME, g_AUFORCE, g_AUVELOCITY, g_AUMOMENTUM, g_AUEFIELD, g_AUEDIPOLE, g_AUMFLUX, g_AUMDIPOLE, g_ASTRONOMICALUNIT, g_NA
+! Constants:
+real(8) :: g_Pi, g_2Pi, g_half_Pi, g_exp, g_e, g_me, g_cvel, g_Mp, g_h, g_kb, g_kb_EV, g_kb_J, g_e0, g_ke, g_mu0, &
+g_Ry, g_a0, g_v0, g_alpha, g_P_atm, g_e_m, g_h_MeVs, g_e_ESU, g_me_MeV, g_u_MeV, g_amu, g_re, g_lambda_e, g_SIGMA_0, &
+g_MU_B_MeV_T, g_E_M_e, g_E_M_P, g_G, g_g_Earth, g_N_A, g_V_MOLAR, g_LAMBDAT, g_SIGMA_SB, g_G_F, g_M_W, g_M_Z0, &
+g_G_S, g_AUENERGY, g_AUACTION, g_AUTIME, g_AUFORCE, g_AUVELOCITY, g_AUMOMENTUM, g_AUEFIELD, g_AUEDIPOLE, &
+g_AUMFLUX, g_AUMDIPOLE, g_ASTRONOMICALUNIT, g_NA, g_ms2Afs, g_Afs2ms, g_r0
 
-real(8) :: g_au2A, g_A2au, g_au2ev, g_ev2au, g_au2am, g_am2au, g_au2fs, g_fs2au, g_ev2kc, g_kc2ev, g_au2kc, g_kc2au, g_au2ic, g_ic2au, g_ev2ic, g_ic2ev, g_ev2kj, g_kj2ev, g_in2cm, g_ft2m, g_yd2m, g_cm2in, g_m2ft, g_m2yd
+complex :: g_CI
 
-complex(8) :: g_I
+! Conversion coefficients:
+real(8) :: g_au2A, g_A2au, g_au2ev, g_ev2au, g_au2am, g_am2au, g_au2fs, g_fs2au, g_ev2kc, g_kc2ev, g_au2kc, g_kc2au, g_au2ic, &
+g_ic2au, g_ev2ic, g_ic2ev, g_ev2kj, g_kj2ev, g_in2cm, g_ft2m, g_yd2m, g_cm2in, g_m2ft, g_m2yd, g_ev2Ry
 
 !UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
 ! Universal constants:
 parameter (g_Pi 	= 3.1415926535897932384626433832795d0)	! Pi
+parameter (g_2Pi   = 2.0d0*g_Pi)        ! 2*Pi
+parameter (g_half_Pi   = 0.5d0*g_Pi)    ! Pi/2
 parameter (g_exp 	= dexp(1.0d0))		! e
 parameter (g_e 		= 1.602176487d-19)	! Electron charge	[Coulomb]
 parameter (g_e_ESU	= 4.8032068d-10)	! Electron charge magnitude	[esu]
-parameter (g_me		= 9.1093821545d-31)	! Electron mass	[kg]
+parameter (g_me	= 9.1093821545d-31)	    ! Electron mass	[kg]
 parameter (g_me_MeV	= 0.51099906d0)		! Electron mass	[MeV/c^2]
 parameter (g_u_MeV	= 931.49432d0)		! unified atomic mass unit	[MeV/c^2]
-parameter (g_cvel	= 299792458.0d0)	! Light velosity	[m/sec]
-parameter (g_Mp		= 1836.1526724780d0*g_me)	! Proton mass		[kg]
+parameter (g_amu  = 1.6605390666050e-27)    ! atomic mass unit (Dalton) [kg]
+parameter (g_cvel	= 299792458.0d0)	! Light velocity	[m/sec]
+parameter (g_Mp	= 1836.1526724780d0*g_me)	! Proton mass		[kg]
 parameter (g_h		= 1.05457162853d-34)	! Plank constant	[J*sec]
 parameter (g_h_MeVs	= 6.582122d-22)		! Planck constant, reduced	[MeV*s]
 parameter (g_kb		= 11604.0d0)		! Boltzmann constant	[K/eV]
-parameter (g_kb_EV	= 8.617385e-05)		! Boltzmann constant	[eV/K]
+parameter (g_kb_EV	= 1.0d0/g_kb)		! Boltzmann constant	[eV/K]
+parameter (g_kb_J	= 1.38064852d-23)	! Boltzmann constant	[J/K]
 parameter (g_e0		= 8.854187817620d-12)	! Electrical constant	[F/m]
+parameter (g_ke     = 1.0d0/(4.0d0*g_Pi*g_e0))  ! Coulomb constant
 parameter (g_mu0	= 1.2566370614359d-6)	! Magnetic constant	[H*A^-2]
-parameter (g_Ry		= 13.6056981d0)		! Rydberg constant	[eV]
-parameter (g_a0		= 0.5291772085936d0)	! Bohr radius		[A]
-parameter (g_re		= 2.81794092d-15)	! classical electron radius	[m]
-parameter (g_v0		= sqrt(2.0d0*g_Ry*g_e/g_me))	! Bohr velosity	[m/s]
+parameter (g_Ry	= 13.6056981d0)		! Rydberg constant	[eV]
 parameter (g_alpha	= g_e*g_e/(g_h*g_cvel*4.0d0*g_Pi*g_e0))	! Fine structure constant // 0.0072973530796448
+parameter (g_a0		= 0.5291772085936d0)	! Bohr radius		[A]
+parameter (g_r0		= g_alpha*g_alpha*g_a0)	! classical electron radius [A]
+parameter (g_re		= 2.81794092d-15)	! classical electron radius	[m]
+parameter (g_v0		= sqrt(2.0d0*g_Ry*g_e/g_me))	! Bohr velocity	[m/s]
 parameter (g_P_atm	= 101325.0d0)		! Atmospheric pressure	[Pa]
 parameter (g_e_m	= g_e/g_me)		! Ratio of electron charge to its mass	[Coulomb/kg]
 parameter (g_lambda_e	= 3.86159323d-13)	! electron Compton wavelength	[m]
@@ -60,12 +72,13 @@ parameter (g_AUEDIPOLE	= 8.4783579d-30)	! 1 a.u. el. dipole in SI
 parameter (g_AUMFLUX	= 235051.808d0)		! 1 a.u. magn. flux in SI
 parameter (g_AUMDIPOLE	= 1.85480308d-23)	! 1 a.u. magn. flux in SI
 parameter (g_ASTRONOMICALUNIT	= 14959787d0)	! 1 AE length in SI
-parameter (g_I	= (0.0d0, 1.0d0))	! complex unity
+parameter (g_CI		= dcmplx(0.0d0,1.0d0) )	! complex unity
 ! Conversion between units:
 parameter (g_au2A	= 0.529177249d0)	! [a.u.] -> [Angstroem]
 parameter (g_A2au	= 1.8897259885789d0)	! [Angstroem] -> [a.u.]
 parameter (g_au2ev	= 27.211396131788d0)	! [a.u.] -> [eV]
 parameter (g_ev2au	= 0.036749308824762d0)	! [eV] -> [a.u.]
+parameter (g_ev2Ry	= 0.07349861764)		! [eV] -> [Ry]
 parameter (g_au2am	= 0.00054857989586762d0)	! [a.u.] -> [atomar mass units]
 parameter (g_am2au	= 1822.8885300626d0)	! [atomar mass units] -> [a.u.]
 parameter (g_au2fs	= 0.024188843341d0)	! [a.u.] -> [fs]
@@ -80,13 +93,14 @@ parameter (g_ev2ic	= 8065.54353d0)		! [eV] -> [1/cm]
 parameter (g_ic2ev	= 0.0001239842047d0)	! [1/cm] -> [eV]
 parameter (g_ev2kj	= 96.485d0)		! [eV] -> [kJoule/mol]
 parameter (g_kj2ev	= 0.0103643d0)		! [kJoule/mol] -> [eV]
-parameter (g_in2cm	= 2.54d0)		! [inch] -> [cm]
+parameter (g_in2cm	= 2.54d0)			! [inch] -> [cm]
 parameter (g_ft2m	= 0.3048d0)		! [feet] -> [m]
 parameter (g_yd2m	= 0.9144d0)		! [yard] -> [m]
-parameter (g_cm2in	= 0.39370078740157d0)	! [inch] -> [cm]
-parameter (g_m2ft	= 3.2808398950131d0)	! [feet] -> [m]
-parameter (g_m2yd	= 1.0936132983377d0)	! [yard] -> [m]
-
+parameter (g_cm2in	= 0.39370078740157d0)	! [cm]-> [inch]
+parameter (g_m2ft	= 3.2808398950131d0)	! [m] ->  [feet]
+parameter (g_m2yd	= 1.0936132983377d0)	! [m] -> [yard]
+parameter (g_ms2Afs = 1.0d-5)                   ! [m/s] -> [A/fs]
+parameter (g_Afs2ms = 1.0d5)                    ! [A/fs] -> [m/s]
 !UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
 
 END MODULE Universal_constants
