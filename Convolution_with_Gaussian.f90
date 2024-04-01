@@ -6,7 +6,7 @@ Program Convolve
 ! ifx.exe /F9999999999 /O3 /fpp  Convolution_with_Gaussian.f90 -o Gauss_Convolve.exe /link /stack:9999999999 
 !<===========================================
 
-integer i, j, FN, FN2, N, M, Reason, N_skip, j_run
+integer i, j, FN, FN2, N, M, Reason, N_skip, j_run, j_cur
 real(8), dimension(:), allocatable :: Read_data
 real(8), dimension(:,:), allocatable :: Spectr
 real(8), dimension(:,:), allocatable :: Conv_Spectr
@@ -78,13 +78,21 @@ exists:if (file_exists) then
    ! Convolution:
    do i = 1+N_skip,N ! all time steps
       do j_run = i-floor(3.0d0*t_g/dt), i+ceiling(3.0d0*t_g/dt)  ! convolve
-        if (j_run < 1+N_skip) then
-			j = N_skip + abs(j_run)	! count back from the bottom
-		elseif (j_run > N) then
-			j = j_run - N	! count back from the top
-		else
-			j = j_run	! count normal
-		endif
+
+		! fold it in the interval of existing indices (in case Gaussian is broader than the given data array)
+		j_cur = j_run
+		j = -1	! to start with
+		do while ((j < 0) .or. (j > N))
+		   if (j < 0) then
+		      j_cur = abs(j_cur)
+		   elseif (j_cur > N) then
+		      j_cur = N - j_cur
+		   endif	  
+		   j = j_cur
+		   !print*, j, j_run, N
+        enddo
+        if (j < N_skip) j = N_skip
+		
 		call Gaussian(mu=Spectr(i,1), sigma=t_g, x=Spectr(j,1), Gaus=Gaus)  ! Gaussian weight
         Conv_Spectr(i,2:) = Conv_Spectr(i,2:) + Spectr(j,2:)*Gaus*dt   ! Convolution of all arrays
         !write(*,'(f,$)') Spectr(j,1), Spectr(j,2), Gaus, Conv_Spectr(i,2)
