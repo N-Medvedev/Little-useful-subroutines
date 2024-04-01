@@ -30,3 +30,12 @@ The code performes a Fourier (or inverse Fourier) transform on the data from a u
 * DIRECT -- to specify that it should be Fourier (not inverse Fourier) transform
 * INVERSE  -- to specify that it should be inverse Fourier transform
 * DECONVOLVE -- to specify if deconvolution of the data with a Gaussian function should be performed (occasionally useful feature)
+
+
+
+## Convolution_with_Gaussian.f90
+The code convolves an arbitrary data read from user-defined file  with a Gaussian function of a given width. To execute, call the compiled file (e.g. Gaussian_Convolve.exe) in the following format:
+* Convolve.exe Sigma FileName
+with the following key-words:
+* Sigma is the Gaussian width (real)
+* Filename is the file wit the data, assuming the first column is the time; all the other columns will be convolved
