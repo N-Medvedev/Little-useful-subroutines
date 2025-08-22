@@ -19,7 +19,6 @@ with the following key-words:
 * File_#2 is the function to be convolved with (will be normalized to 1)
 * col_1 is the column with the x axis (grid)
 * col_2 is the column with the y axis (data)
-
 Note that Entry separator " / " must be used before each file name
 
 
@@ -32,10 +31,19 @@ The code performes a Fourier (or inverse Fourier) transform on the data from a u
 * DECONVOLVE -- to specify if deconvolution of the data with a Gaussian function should be performed (occasionally useful feature)
 
 
-
 ## Convolution_with_Gaussian.f90
 The code convolves an arbitrary data read from user-defined file  with a Gaussian function of a given width. To execute, call the compiled file (e.g. Gaussian_Convolve.exe) in the following format:
 * Convolve.exe Sigma FileName
 with the following key-words:
 * Sigma is the Gaussian width (real)
 * Filename is the file wit the data, assuming the first column is the time; all the other columns will be convolved
+
+
+## Interpolate_on_the_grid.f90
+The code interpolate an arbitrary data array read from user-defined file on a user-given grid defined in a separate file. To execute, call the compiled file (e.g. Interpolate_grid.exe) in the following format:
+* Interpolate.exe  /File_#1 col_1 /File_#2 col_1 col_2
+* File_#1 is the file with the given grid
+* File_#2 is the data to be interpolated on the grid points
+* col_1 is the column with the x axis (grid)
+* col_2 is the column with the y axis (data)
+Note that Entry separator " / " must be used before each file name
