@@ -19,6 +19,7 @@ with the following key-words:
 * File_#2 is the function to be convolved with (will be normalized to 1)
 * col_1 is the column with the x axis (grid)
 * col_2 is the column with the y axis (data)
+
 Note that Entry separator " / " must be used before each file name
 
 
@@ -46,4 +47,5 @@ The code interpolate an arbitrary data array read from user-defined file on a us
 * File_#2 is the data to be interpolated on the grid points
 * col_1 is the column with the x axis (grid)
 * col_2 is the column with the y axis (data)
+
 Note that Entry separator " / " must be used before each file name
